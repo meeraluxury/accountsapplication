@@ -1,0 +1,214 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+  <title>Daily Updates</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"></link>
+  <link rel="stylesheet" th:href="@{/css/bootstrap-datetimepicker.min.css}" ></link>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script th:src="@{/js/bootstrap-datetimepicker.min.js}"></script>
+  <script th:src="@{/js/meeraluxurycustom.js}"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */ 
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Add a gray background color and some padding to the footer */
+    footer {
+	  background-color: #f2f2f2;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="#">Meera Luxury Accountancy</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="#">Home</a></li>
+        <li class="active"><a href="#">Daily Updates</a></li>
+        <li><a href="#">View Report</a></li>
+        <li><a href="#">Administration</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- <div class="container-fluid"> --> <!-- container-fluid class is used to make page full width -->
+<div class="container">
+    <h3>Please provide income of PATNA-RANCHI</h3><!-- <p th:text="${name}">Welcome to our grocery store!</p>  -->
+    <!-- Form Starts-->
+    <form id="addincome-form" name="addincome-form" method="post" th:object="${incomeForm}" th:action="@{/income/add}" class="form-horizontal" novalidate="novalidate"><!-- START THE FORM -->
+    <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="col-sm-12">
+                <div class="row">
+                  <div class="col-sm-6">
+                      <label for="patna" class="col-sm-4 control-label">Select Date</label>
+                        <div class='col-sm-8'>
+                            <div class="form-group">
+                                <div class='input-group date' id='datetimepicker'>
+                                    <input type='text' th:field="*{date}" class="form-control"/>
+                                    <span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  <div class="col-sm-6">
+                        <label for="busnumber" class="col-sm-4 control-label">Bus Number</label>
+                            <div class="col-sm-8">
+                            <input type="text" class="form-control" th:field="*{busNumber}" id="busnumber" placeholder="For example 1000"/>
+                            </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+      </div><!-- END PANEL -->
+    <div class="panel panel-default">
+            <div class="panel-body">
+                    <div class="col-sm-6"> <!-- FIRST COLUMN -->
+                        <h3>Income</h3>
+                        <div class="form-group">
+                            <label for="patna" class="col-sm-4 control-label">Patna</label>
+                            <div class="col-sm-8">
+                            <input type="text" th:field="*{incomeColumn1}" class="form-control income" placeholder="For example 1000"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ranchistand" class="col-sm-4 control-label">Ranchi Stand</label>
+                            <div class="col-sm-8">
+                            <input type="text" th:field="*{incomeColumn2}" class="form-control income" id="ranchistand" placeholder="For example 1000"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="hotelashoka" class="col-sm-4 control-label">Hotel Ashoka</label>
+                            <div class="col-sm-8">
+                            <input type="text" th:field="*{incomeColumn3}" class="form-control income" id="hotelashoka" placeholder="For example 1000"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="harmu" class="col-sm-4 control-label">Harmu</label>
+                            <div class="col-sm-8">
+                            <input type="text" th:field="*{incomeColumn4}" class="form-control income" id="harmu" placeholder="For example 1000"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="medical" class="col-sm-4 control-label">Medical</label>
+                            <div class="col-sm-8">
+                            <input type="text" th:field="*{incomeColumn5}" class="form-control income" id="medical" placeholder="For example 1000"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="khadgarha" class="col-sm-4 control-label">Khadgarha</label>
+                            <div class="col-sm-8">
+                            <input type="text" th:field="*{incomeColumn6}" class="form-control income" id="khadgarha" placeholder="For example 1000"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ramgarh" class="col-sm-4 control-label">Ramgarh</label>
+                            <div class="col-sm-8">
+                            <input type="text" th:field="*{incomeColumn7}" class="form-control income" id="ramgarh" placeholder="For example 1000"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="otherincome" class="col-sm-4 control-label">Other Income</label>
+                            <div class="col-sm-8">
+                            <input type="text" th:field="*{incomeColumn8}" class="form-control income" id="otherincome" placeholder="For example 1000"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="otherincome" class="col-sm-4 control-label">Comment</label>
+                            <div class="col-sm-8">
+                              <input type="text" th:field="*{remarks}" class="form-control" id="otherincome" placeholder="Comment about other income"/>
+                            </div>
+                        </div>
+                    </div><!-- END FIRST COLUMN -->
+                    <div class="col-sm-6"> <!-- SECOND COLUMN -->
+                        <h3>Expenses</h3>
+                        <div class="form-group">
+                            <label for="diesel" class="col-sm-4 control-label">Diesel</label>
+                            <div class="col-sm-8">
+                            <input type="text" th:field="*{expense.expenseColumn1}" class="form-control expense" id="diesel" placeholder="or example 1000"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="staff" class="col-sm-4 control-label">Staff</label>
+                            <div class="col-sm-8">
+                            <input type="text" class="form-control expense" id="staff" placeholder="or example 1000"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="barrier" class="col-sm-4 control-label">Barrier</label>
+                            <div class="col-sm-8">
+                            <input type="text" class="form-control expense" id="barrier" placeholder="or example 1000"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="logsheet" class="col-sm-4 control-label">Log sheet</label>
+                            <div class="col-sm-8">
+                            <input type="text" class="form-control expense" id="logsheet" placeholder="or example 1000"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="otherexpense" class="col-sm-4 control-label">Other Expense</label>
+                            <div class="col-sm-8">
+                            <input type="text" class="form-control expense" id="otherexpense" placeholder="or example 1000"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="otherexpensecomment" class="col-sm-4 control-label">Comment</label>
+                            <div class="col-sm-8">
+                            <input type="text" class="form-control" id="otherexpensecomment" placeholder="Comment about other expense"/>
+                            </div>
+                        </div>
+                    </div><!-- END SECOND COLUMN -->
+            </div>
+            <div class="form-group">        
+              <div class="col-sm-offset-5 col-sm-10">
+                <button type="submit" class="btn btn-default">Submit</button>
+              </div>
+          </div>
+        </div><!-- END PANEL -->
+        </form>
+        <!-- Form Ends-->
+        <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="col-sm-12">
+                      <div class="row">
+                        <div class="col-sm-4" id="totalincome"><span id="tincome" data-tincome="0"/><h3>Total Income: 0</h3></div>
+                        <div class="col-sm-4" id="totalexpense"><span id="texpense" data-texpense="0"/><h3>Total Expenses: 0</h3></div>
+                        <div class="col-sm-4" id="totalsaving"><h3>Total Saving: 0</h3></div>
+                    </div>
+            </div>
+        </div>
+      </div>
+</div>
+
+
+<footer class="container-fluid text-right">
+  <p>@meeraluxury</p>
+</footer>
+
+</body>
+</html>
