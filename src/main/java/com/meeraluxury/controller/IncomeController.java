@@ -53,7 +53,7 @@ public class IncomeController {
 		
 		Income income = repository.save(incomeForm.toIncome());
 		Income income1 = repository.findOne(income.getId());
-		System.out.println("Incoem ID - "+income1.getId());
+		System.out.println("Incoem ID1 - "+income1.getId());
 		System.out.println("Expense ID - "+income1.getExpense().getExpenseColumn1());
 		model.addAttribute("incomeId", income.getId());
 		model.addAttribute("income", income);
